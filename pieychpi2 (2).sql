@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 17, 2017 at 05:10 PM
+-- Generation Time: Oct 18, 2017 at 05:34 PM
 -- Server version: 10.1.26-MariaDB
 -- PHP Version: 7.0.23
 
@@ -33,6 +33,7 @@ CREATE TABLE `tblaccounts` (
   `user_id` int(11) NOT NULL,
   `account_password` varchar(100) NOT NULL,
   `account_savings` double NOT NULL,
+  `account_status` varchar(30) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -48,6 +49,7 @@ CREATE TABLE `tblcreditcards` (
   `user_id` int(11) NOT NULL,
   `card_password` int(4) NOT NULL,
   `card_savings` double NOT NULL,
+  `credit_status` int(11) NOT NULL,
   `card_created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `card_updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -62,6 +64,7 @@ CREATE TABLE `tbldeposits` (
   `dep_id` int(11) NOT NULL,
   `dep_amount` double NOT NULL,
   `dep_user_id` int(11) NOT NULL,
+  `dep_status` int(11) NOT NULL,
   `dep_date` varchar(30) NOT NULL,
   `dep_time` varchar(30) NOT NULL,
   `dep_location` varchar(150) NOT NULL
@@ -77,6 +80,7 @@ CREATE TABLE `tbltransaction` (
   `tran_id` int(11) NOT NULL,
   `tran_type` varchar(100) NOT NULL,
   `tran_user_id` int(11) NOT NULL,
+  `tran_status` int(11) NOT NULL,
   `tran_date` int(11) NOT NULL,
   `tran_time` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -94,6 +98,7 @@ CREATE TABLE `tblusers` (
   `user_lname` varchar(100) NOT NULL,
   `user_email` varchar(100) NOT NULL,
   `user_password` varchar(100) NOT NULL,
+  `user_status` int(11) NOT NULL,
   `user_created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `user_updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -108,6 +113,7 @@ CREATE TABLE `tblwithdraw` (
   `with_id` int(11) NOT NULL,
   `with_amount` int(11) NOT NULL,
   `with_user_id` int(11) NOT NULL,
+  `with_status` int(11) NOT NULL,
   `with_date` int(11) NOT NULL,
   `with_time` int(11) NOT NULL,
   `with_location` varchar(150) NOT NULL
