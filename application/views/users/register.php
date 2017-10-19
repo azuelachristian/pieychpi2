@@ -7,17 +7,43 @@
         <div class="col-md-4">
             <h1>REGISTER</h1>
 
+            <form method="POST" action="<?=base_url().'user/register'?>">
             <?php if (validation_errors()){ ?>
-                <div class="alert alert-danger">
-                    <?= validation_errors() ?>
+                <div>
+                    <?= form_error("user_fname") ?>
                 </div>
             <?php } ?>
-
-            <form method="POST" action="<?=base_url().'user/register'?>">
-            <input type="text" name="name" class="form-control" placeholder="Name"> <br>
-            <input type="password" name="password" class="form-control" placeholder="Password"> <br>
-            <input type="password" name="repass" class="form-control" placeholder="Password"> <br>
-            <input type="text" name="email" class="form-control" placeholder="Email"> <br>
+            <input type="text" name="user_fname" class="form-control" value = "<?=set_value('user_fname')?>" placeholder="First Name"> <br>
+            <?php if (validation_errors()){ ?>
+                <div>
+                    <?= form_error("user_mname") ?>
+                </div>
+            <?php } ?>
+            <input type="text" name="user_mname" class="form-control" value = "<?=set_value('user_mname')?>" placeholder="Middle Name"> <br>
+            <?php if (validation_errors()){ ?>
+                <div>
+                    <?= form_error("user_lname") ?>
+                </div>
+            <?php } ?>
+            <input type="text" name="user_lname" class="form-control" value = "<?=set_value('user_lname')?>" placeholder="Last Name"> <br>
+            <?php if (validation_errors()){ ?>
+                <div>
+                    <?= form_error("user_email") ?>
+                </div>
+            <?php } ?>
+            <input type="text" name="user_email" class="form-control" value = "<?=set_value('user_email')?>"  placeholder="Email"> <br>
+            <?php if (validation_errors()){ ?>
+                <div>
+                    <?= form_error("user_password") ?>
+                </div>
+            <?php } ?>
+            <input type="password" name="user_password" class="form-control" placeholder="Password"> <br>
+            <?php if (validation_errors()){ ?>
+                <div>
+                    <?= form_error("user_repass") ?>
+                </div>
+            <?php } ?>
+            <input type="password" name="user_repass" class="form-control" placeholder="Confirm Password"> <br>                     
             <button class="btn btn-success" type="submit">Submit</button>
             </form>
             <br>

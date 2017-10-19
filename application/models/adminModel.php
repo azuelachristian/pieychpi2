@@ -5,7 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class adminModel extends CI_Model {
 
 public function getAllUsers(){
-    $q = $this->db->get('tbluser');
+    $q = $this->db->get('tblusers');
     return $q->result();
 }
 public function getAllItems(){
@@ -13,11 +13,11 @@ public function getAllItems(){
     return $q->result();
 }
 public function viewUser($id){
-    $q = $this->db->get_where('tbluser', array('id' => $id));
+    $q = $this->db->get_where('tblusers', array('id' => $id));
     return $q->result();
 }
 public function viewInfo($name){
-    $q = $this->db->get_where('tbluser', array('name' => $name));
+    $q = $this->db->get_where('tblusers', array('name' => $name));
     return $q->result();
 }
 public function getAdmin(){
@@ -25,21 +25,21 @@ public function getAdmin(){
      return $q->result();
 }
 public function deleteUser($id){
-    $this->db->delete('tbluser', array('id' => $id));
+    $this->db->delete('tblusers', array('id' => $id));
 }
 public function getUser($id){
-    $q = $this->db->get_where('tbluser', array('id' => $id));
+    $q = $this->db->get_where('tblusers', array('id' => $id));
     return $q->row();
 
 }
 public function getUserinfo($name){
-    $q = $this->db->get_where('tbluser', array('name' => $name));
+    $q = $this->db->get_where('tblusers', array('name' => $name));
     return $q->row();
 
 }
 public function updateUser($id,$user){
     $this->db->where('id', $id);
-    $this->db->update('tbluser', $user);
+    $this->db->update('tblusers', $user);
 }
 
 public function nameAvailability($name)

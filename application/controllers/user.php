@@ -18,19 +18,14 @@ class user extends CI_Controller {
     
 
     public function index(){
-
             // $this->load->helper('url');  method level   
-             $this->load->view('includes/header');
-            $this->load->view('includes/nav');
-            $this->load->view('users/index');
-             $this->load->view('includes/footer');
-                
+        $this->load->view('includes/header');
+        $this->load->view('includes/nav');
+        $this->load->view('users/index');
+        $this->load->view('includes/footer');                
     }
     public function adminindex(){
-
-            // $this->load->helper('url');  method level
-
-   
+            // $this->load->helper('url');  method level   
              $this->load->view('includes/header');
             $this->load->view('includes/nav');
             $this->load->view('users/adminindex');
@@ -57,18 +52,17 @@ class user extends CI_Controller {
                 'password'=> $this->input->post('password'),
                 'email'=> $this->input->post('email')   
                 );
-        $this->userModel->insertUser($user);
-
-        redirect('admin/index');
+                        $this->userModel->insertUser($user);
+                        redirect('admin/index');
                 }
         }
 
 
-public function reg(){
-        $this->load->view('includes/header');
-        $this->load->view('includes/nav');
-        $this->load->view('users/register');
-        $this->load->view('includes/footer');
+        public function reg(){
+                $this->load->view('includes/header');
+                $this->load->view('includes/nav');
+                $this->load->view('users/register');
+                $this->load->view('includes/footer');
     }
 
      public function display(){
@@ -84,16 +78,12 @@ public function reg(){
     }
 
               
-        public function userAccess(){
-                
+        public function userAccess(){                
                 $this->form_validation->set_rules('name', 'Name', 'required|min_length[3]|callback_name_available');
                 $this->form_validation->set_rules('password', 'Password', 'required|callback_password_available');
-
                  if ($this->form_validation->run() == FALSE)
-                {
-                 
-                echo '<div class="alert alert-danger">'.validation_errors().'</div>';
-                
+                {                 
+                echo '<div class="alert alert-danger">'.validation_errors().'</div>';                
                 }
                 else
                 {
@@ -137,23 +127,26 @@ public function reg(){
         public function register(){
                 // $data['name'] = $this->input->post('name');
                 // $data['password'] = $this->input->post('password');
-                // $data['email'] = $this->input->post('email');
-
-               
+                // $data['email'] = $this->input->post('email');             
 
                 $user = array(
-                'name' => $this->input->post('name'),
-                'password' => sha1($this->input->post('password')),
-                'email' => $this->input->post('email'),
-                'activation_code' => random_string('alnum', 8),
-                'status' => 'inactive'
+                'user_fname' => $this->input->post('user_fname'),
+                'user_mname' => $this->input->post('user_mname'),
+                'user_lname' => $this->input->post('user_lname'),
+                'user_password' => sha1($this->input->post('user_password')),
+                'user_email' => $this->input->post('user_email'),
+                'user_activation_code' => random_string('alnum', 8),
+                'user_status' => 'inactive'
 
         );
 
-        $this->form_validation->set_rules('name', 'Name', 'required|min_length[3]|is_unique[tbluser.name]');
-        $this->form_validation->set_rules('password', 'Password', 'required|min_length[8]');
-        $this->form_validation->set_rules('repass', 'Re-enter Password', 'required|matches[password]');
-        $this->form_validation->set_rules('email', 'Email', 'required');
+        $this->form_validation->set_rules('user_fname', 'First Name', 'required');
+        $this->form_validation->set_rules('user_mname', 'Middle Name', 'min_length[1]');
+        $this->form_validation->set_rules('user_lname', 'Last Name', 'required');
+        $this->form_validation->set_rules('user_email', 'Email', 'required|is_unique[tblusers.user_email]');
+        $this->form_validation->set_rules('user_password', 'Password', 'required|min_length[8]');
+        $this->form_validation->set_rules('user_repass', 'Re-enter Password', 'required|matches[user_password]');        
+        $this->form_validation->set_error_delimiters('<div class="alert alert-danger">', '</div>');
 
         if ($this->form_validation->run() == FALSE)
         {
@@ -197,6 +190,14 @@ public function reg(){
 			echo 'invalid';
 		}
 	}
+
+
+        public function MySavings(){
+                $this->load->view('includes/header');
+                $this->load->view('includes/nav');
+                $this->load->view('cardSavings/index');
+                $this->load->view('includes/footer');  
+        }
 
         
 }
