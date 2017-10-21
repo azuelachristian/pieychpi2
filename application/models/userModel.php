@@ -16,7 +16,7 @@ public function checkAccount($cond){
 public function nameAvailability($name)
 {
     $this->db->where('name',$name);
-    $query  =   $this->db->get('tbluser');
+    $query  =   $this->db->get('tblusers');
     return $query->row();
 }
 public function validateName($name)

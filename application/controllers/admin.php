@@ -21,7 +21,7 @@ class admin extends CI_Controller {
             $data['users'] = $this->adminModel->getAllUsers();
             $this->load->view('includes/header');
             $this->load->view('includes/nav');
-            $this->load->view('users/userdashboard', $data);
+            //$this->load->view('users/userdashboard', $data);
             $this->load->view('includes/footer');
                 
         }
